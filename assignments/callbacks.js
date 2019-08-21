@@ -78,8 +78,15 @@ function contains(item, list, cb) {
  
   // contains checks if an item is present inside of the given array/list.
   // Pass true to the callback if it is, otherwise pass false.
-
-}
+  
+      let count=items.length;
+      for(var i=0;i<count;i++)
+      {
+          if(items[i]===cb){return true;}
+      }
+      return false;
+  }
+console.log(contains(1,2,"yo-yo"));
 
 /* STRETCH PROBLEM */
 
