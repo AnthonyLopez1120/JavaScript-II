@@ -28,6 +28,9 @@ const items = ['Pencil', 'Notebook', 'yo-yo', 'Gum'];
   const test1 = firstItem(items, item => `I love my ${item}!`);
   console.log(test1); // "I love my Pencil!"
 
+
+
+
   // TEST 2 (declaring callback before hand):
 
   function logExorbitantPrice(article) {
@@ -38,27 +41,60 @@ const items = ['Pencil', 'Notebook', 'yo-yo', 'Gum'];
   console.log(test2); // "this Pencil is worth a million dollars!"
 */
 
-
-function getLength(arr, cb) {
   // getLength passes the length of the array into the callback.
-}
+function getLength(arr, cb) {
 
+  function cb(){
+    return arr.length;
+  };
+  return cb();
+  
+};
+console.log(getLength(items));
+
+
+// last passes the last item of the array into the callback.
 function last(arr, cb) {
-  // last passes the last item of the array into the callback.
+
+  function cb(){
+    return arr.pop();
+  }
+  return cb();
 }
 
+console.log(last(items));
+
+ // sumNums adds two numbers (x, y) and passes the result to the callback.
 function sumNums(x, y, cb) {
-  // sumNums adds two numbers (x, y) and passes the result to the callback.
+  return cb(x, y);
 }
+const add = function(x, y){
+  return x + y;
+}
+console.log(sumNums(5.5, 5.5, add));
 
+
+// multiplyNums multiplies two numbers and passes the result to the callback.
 function multiplyNums(x, y, cb) {
-  // multiplyNums multiplies two numbers and passes the result to the callback.
+  return cb(x, y);
 }
 
+const multiply= function(x, y){
+  return x * y;
+};
+console.log(multiplyNums(3, 5, multiply));
+
+
+
+
+// contains checks if an item is present inside of the given array/list.
+// Pass true to the callback if it is, otherwise pass false.
 function contains(item, list, cb) {
-  // contains checks if an item is present inside of the given array/list.
-  // Pass true to the callback if it is, otherwise pass false.
+
+  return cb(list.includes(item))
 }
+contains('Pencil', items, check => console.log(check));
+
 
 /* STRETCH PROBLEM */
 
@@ -66,4 +102,5 @@ function removeDuplicates(array, cb) {
   // removeDuplicates removes all duplicate values from the given array.
   // Pass the duplicate free array to the callback function.
   // Do not mutate the original array.
+
 }
